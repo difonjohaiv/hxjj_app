@@ -20,7 +20,8 @@ class LLM:
 
     @abstractmethod
     def stream_generate(self, prompt: str) -> str:
-        """stream generate response, which yields a generator of response in each step
+        """stream generate response, which yields a
+        generator of response in each step
 
         Args:
             prompt (str): prompt

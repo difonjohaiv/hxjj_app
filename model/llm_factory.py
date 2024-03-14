@@ -1,5 +1,7 @@
-from .llm import *
+# from .llm import *
+from .llm.qwen import Qwen
 from config.model_config import LLM_MODEL_DICT
+
 
 def get_llm_cls(llm_type):
     if llm_type == 'qwen':
@@ -15,6 +17,7 @@ def get_llm_cls(llm_type):
 
 
 class LLMFactory:
+
     @staticmethod
     def build_llm(model_name, additional_cfg):
         cfg = LLM_MODEL_DICT.get(model_name, {'type': 'test'})
@@ -23,4 +26,3 @@ class LLMFactory:
         llm_cls = get_llm_cls(llm_type)
         llm_cfg = cfg
         return llm_cls(cfg=llm_cfg)
-    
