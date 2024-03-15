@@ -55,6 +55,7 @@ def main():
     
     result = sqldb.select_data("select 股票代码 ,round(([收盘价(元)] -[昨收盘(元)])/[昨收盘(元)]*100,2)||'%' from A股票日行情表 where 交易日 = '20210105' and 股票代码 in (select 股票代码 from A股公司行业划分表 where 行业划分标准 = '中信行业分类' and 一级行业名称 = '综合金融' and 交易日期 = '20210105') order by ([收盘价(元)] -[昨收盘(元)])/[昨收盘(元)] desc limit 1   ")
     print(post_process_answer("请帮我计算，在20210105，中信行业分类划分的一级行业为综合金融行业中，涨跌幅最大股票的股票代码是？涨跌幅是多少？百分数保留两位小数。股票涨跌幅定义为：（收盘价 - 前一日收盘价 / 前一日收盘价）* 100%。", str(result)))
+
 if __name__ == '__main__':
     main()
 
