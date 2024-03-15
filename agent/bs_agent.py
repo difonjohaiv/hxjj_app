@@ -6,19 +6,22 @@ from model.llm import LLM
 from .output_parser import BSOutputParser
 from .output_wrapper import display
 from prompt import BSPromptGenerator
+
 # from ..retrieve import ToolRetrieval
 from chains import DocumentRetrieveChain, DatabaseQueryChain, SqlGeneratorChain
+
 # 构建Agent，需要传入llm，工具配置config以及工具检索
 
-DEFAULT_TOOL_LIST = {"DocumentRetrieve": DocumentRetrieveChain(),
-                     "SqlGenerator": SqlGeneratorChain(),
-                        "DatabaseQuery": DatabaseQueryChain()}
+DEFAULT_TOOL_LIST = {
+    "DocumentRetrieve": DocumentRetrieveChain(),
+    "SqlGenerator": SqlGeneratorChain(),
+    "DatabaseQuery": DatabaseQueryChain(),
+}
+
 
 class BSAgentExecutor:
 
-    def __init__(self,
-                 llm: LLM,
-                 display: bool = False):
+    def __init__(self, llm: LLM, display: bool = False):
         """
         the core class of ms agent. It is responsible for the interaction between user, llm and tools,
         and return the execution result to user.
@@ -39,9 +42,9 @@ class BSAgentExecutor:
         """
 
         self.llm = llm
-        self._init_tools()
-        self.prompt_generator = BSPromptGenerator()
-        self.output_parser = BSOutputParser()
+        self._init_tools()  # 加载工具列表
+        self.prompt_generator = BSPromptGenerator()  # 加载prompt模板
+        self.output_parser = BSOutputParser()  # 加载输出解析器
         self.task_list = []
         self.task_no = None
         self.display = display
@@ -59,10 +62,8 @@ class BSAgentExecutor:
         """
         self.available_tool_list = deepcopy(DEFAULT_TOOL_LIST)
 
-    def run(self,
-            user_input: str,
-            print_info: bool = False) -> List[Dict]:
-        """ use llm and tools to execute task given by user
+    def run(self, user_input: str, print_info: bool = False) -> List[Dict]:
+        """use llm and tools to execute task given by user
 
         Args:
             task (str): concrete task
@@ -75,28 +76,31 @@ class BSAgentExecutor:
         """
 
         # no task, first generate task list
-        
-        
+
         idx = 0
         final_res = []
         self.reset()  # 清空历史
         self.agent_state["用户问题"] = user_input  # 添加问题
         self.prompt_generator.init_plan_prompt(user_input)  # 生成prompt
-        
+
         while True:
             idx += 1
             # generate prompt and call llm
-            llm_result, exec_result = '', {}
-            prompt = self.prompt_generator.generate(self.task_no)
-            llm_result = self.llm.generate(prompt)
+            llm_result, exec_result = "", {}
+            prompt = self.prompt_generator.generate(
+                self.task_no
+            )  # 根据task_no生成对应的prompt模板
+            llm_result = self.llm.generate(
+                prompt
+            )  # 把prompt当作输入，让llm处理，返回结果。执行子类的generate方法
             if print_info:
-                print(f'|prompt{idx}: {prompt}')
-                print(f'|llm_result{idx}: {llm_result}')
+                print(f"|prompt{idx}: {prompt}")
+                print(f"|llm_result{idx}: {llm_result}")
 
             # parse and get tool name and arguments
             action, action_args = self.output_parser.parse_response(llm_result)
             if print_info:
-                print(f'|action: {action}, action_args: {action_args}')
+                print(f"|action: {action}, action_args: {action_args}")
             final_res.append(llm_result)
             if action is None:
                 # in chat mode, the final result of last instructions should be updated to prompt history
@@ -105,9 +109,9 @@ class BSAgentExecutor:
                 action_args = self.parse_action_args(action_args)
                 tool = self.available_tool_list[action]
                 try:
-                    exec_result = tool(user_input,**action_args)
+                    exec_result = tool(user_input, **action_args)
                     if print_info:
-                        print(f'|exec_result: {exec_result}')
+                        print(f"|exec_result: {exec_result}")
                     # parse exec result and store result to agent state
                     if exec_result.get("error") is not None:
                         final_res.append(exec_result)
@@ -117,11 +121,11 @@ class BSAgentExecutor:
                             self.task_no = None
                             continue
                         return final_res
-                    final_res.append(exec_result.get('result', ''))
+                    final_res.append(exec_result.get("result", ""))
                     self.parse_exec_result(exec_result)
                 except Exception as e:
-                    exec_result = f'Action call error: {action}: {action_args}. \n Error message: {e}'
-                    final_res.append({'error': exec_result})
+                    exec_result = f"Action call error: {action}: {action_args}. \n Error message: {e}"
+                    final_res.append({"error": exec_result})
                     if self.error_nums < 3:
                         self.error_nums += 1
                         self.prompt_generator.init_plan_prompt(user_input)
@@ -130,7 +134,7 @@ class BSAgentExecutor:
                     return final_res
             else:
                 exec_result = f"Unknown action: '{action}'. "
-                final_res.append({'error': exec_result})
+                final_res.append({"error": exec_result})
                 if self.error_nums < 3:
                     self.error_nums += 1
                     self.prompt_generator.init_plan_prompt(user_input)
@@ -142,16 +146,19 @@ class BSAgentExecutor:
             if self.display:
                 display(llm_result, exec_result, idx)
             if self.task_no is None:
-                self.prompt_generator.init_task_prompt(user_input, self.available_tool_list.values())
+                self.prompt_generator.init_task_prompt(
+                    user_input, self.available_tool_list.values()
+                )
                 self.task_no = 0
-                self.task_list = [task.strip() for task in re.split(r'\n[0-9].',llm_result)[1:]]
+                self.task_list = [
+                    task.strip() for task in re.split(r"\n[0-9].", llm_result)[1:]
+                ]
             else:
                 self.task_no += 1
                 if self.task_no >= len(self.task_list):
                     return final_res
-            
-            self.prompt_generator.update_task_prompt(self.task_list[self.task_no])
 
+            self.prompt_generator.update_task_prompt(self.task_list[self.task_no])
 
     def reset(self):
         """
@@ -159,7 +166,7 @@ class BSAgentExecutor:
         """
         # self.prompt_generator.reset()
         self.task_no = None
-        self.exec_result = ''
+        self.exec_result = ""
         self.agent_state = dict()
         self.error_nums = 0
 
