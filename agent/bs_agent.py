@@ -79,9 +79,9 @@ class BSAgentExecutor:
         
         idx = 0
         final_res = []
-        self.reset()
-        self.agent_state["用户问题"] = user_input
-        self.prompt_generator.init_plan_prompt(user_input)
+        self.reset()  # 清空历史
+        self.agent_state["用户问题"] = user_input  # 添加问题
+        self.prompt_generator.init_plan_prompt(user_input)  # 生成prompt
         
         while True:
             idx += 1

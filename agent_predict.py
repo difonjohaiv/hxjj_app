@@ -42,7 +42,7 @@ def main():
     seed_it(args.random_seed)
     print("加载Agent...")
     bs_agent = BSAgentExecutor(llm)
-    contents = read_jsonl(args.question_file_path)
+    contents = read_jsonl(args.question_file_path)  # 读取问题json文件，返回的是list
     print("开始预测...")
     for i, content in enumerate(contents):
         answer = bs_agent.run(content['question'])

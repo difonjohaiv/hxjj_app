@@ -10,5 +10,3 @@ def read_jsonl(path):
 def write_jsonl(path, content):
     with jsonlines.open(path, "w") as json_file:
         json_file.write_all(content)
-
-
