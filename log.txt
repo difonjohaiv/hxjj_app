@@ -45,3 +45,11 @@
 2024-03-16 21:03:30,577 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
 2024-03-16 21:04:45,034 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.请使用最新模型和代码，尤其如果你在9月25日前已经开始使用Qwen-7B，千万注意不要使用错误代码和模型。
 2024-03-16 21:04:47,882 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2024-03-16 21:55:55,595 - datasets - INFO - PyTorch version 2.0.1+cu117 available.
+2024-03-16 21:55:56,285 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
+2024-03-16 21:55:56,294 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
+2024-03-16 21:56:29,156 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.请使用最新模型和代码，尤其如果你在9月25日前已经开始使用Qwen-7B，千万注意不要使用错误代码和模型。
+2024-03-16 22:05:50,064 - datasets - INFO - PyTorch version 2.0.1+cu117 available.
+2024-03-16 22:05:50,972 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
+2024-03-16 22:05:50,974 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
+2024-03-16 22:06:11,773 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.请使用最新模型和代码，尤其如果你在9月25日前已经开始使用Qwen-7B，千万注意不要使用错误代码和模型。
