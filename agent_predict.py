@@ -24,42 +24,48 @@ def seed_it(seed):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--question_file_path',
-                        type=str,
-                        default='data/question.json',
-                        nargs='?',
-                        help='question file which need predict')
-    parser.add_argument('--answer_file_path',
-                        type=str,
-                        default='data/answer.jsonl',
-                        nargs='?',
-                        help='answer file which model generate')
-    parser.add_argument('--random_seed', type=int, default=1234, nargs='?')
-    parser.add_argument('--whole_output', type=bool, default=False, nargs='?')
+    parser.add_argument(
+        "--question_file_path",
+        type=str,
+        default="data/question.json",
+        nargs="?",
+        help="question file which need predict",
+    )
+    parser.add_argument(
+        "--answer_file_path",
+        type=str,
+        default="data/answer.jsonl",
+        nargs="?",
+        help="answer file which model generate",
+    )
+    parser.add_argument("--random_seed", type=int, default=1234, nargs="?")
+    parser.add_argument("--whole_output", type=bool, default=False, nargs="?")
 
     args = parser.parse_args()
     # set random seed
     seed_it(args.random_seed)
     print("加载Agent...")
-    bs_agent = BSAgentExecutor(llm)
-    contents = read_jsonl(args.question_file_path)  # 读取问题json文件，返回的是list，list的item为dict
+    bs_agent = BSAgentExecutor(llm)  # llm为大模型配置dict
+    contents = read_jsonl(
+        args.question_file_path
+    )  # 读取问题json文件，返回的是list，list的item为dict
     print("开始预测...")
     for i, content in enumerate(contents):
-        answer = bs_agent.run(content['question'])
+        answer = bs_agent.run(content["question"])
         if args.whole_output:
-            content['full_result'] = answer
+            content["full_result"] = answer
         if len(answer) > 0 and isinstance(answer[-1], str):
-            content['answer'] = answer[-1]
+            content["answer"] = answer[-1]
         else:
-            content['answer'] = content['question']
-        with open(args.answer_file_path, 'a+', encoding='utf-8') as f:
+            content["answer"] = content["question"]
+        with open(args.answer_file_path, "a+", encoding="utf-8") as f:
             json.dump(content, f, ensure_ascii=False)
-            f.write('\n')
+            f.write("\n")
         if i % 50 == 49:
             logger.info(f"已预测{i}条")
             print(f"已预测{i}条")
     print("预测完成！")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

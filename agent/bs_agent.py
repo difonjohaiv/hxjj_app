@@ -92,7 +92,7 @@ class BSAgentExecutor:
             )  # 根据task_no生成对应的prompt模板
             llm_result = self.llm.generate(
                 prompt
-            )  # 把prompt当作输入，让llm处理，返回结果。执行子类的generate方法
+            )  # 把prompt当作输入，让llm处理，返回结果。执行子类的generate方法。这里是任务分类（generate或者query）
             if print_info:
                 print(f"|prompt{idx}: {prompt}")
                 print(f"|llm_result{idx}: {llm_result}")
@@ -102,7 +102,7 @@ class BSAgentExecutor:
             if print_info:
                 print(f"|action: {action}, action_args: {action_args}")
             final_res.append(llm_result)
-            if action is None:
+            if action is None:  # 如果识别不了任务，
                 # in chat mode, the final result of last instructions should be updated to prompt history
                 pass
             elif action in self.available_tool_list:

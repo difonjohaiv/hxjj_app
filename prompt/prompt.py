@@ -3,14 +3,16 @@ import re
 
 class PromptGenerator:
 
-    def __init__(self,
-                 plan_template: str = '',
-                 task_template: str = '',
-                 task_instruction_template: str = '',
-                 user_template: str = '',
-                 current_task_template: str = '',
-                 sep='\n\n',
-                 prompt_max_length: int = 10000):
+    def __init__(
+        self,
+        plan_template: str = "",
+        task_template: str = "",
+        task_instruction_template: str = "",
+        user_template: str = "",
+        current_task_template: str = "",
+        sep="\n\n",
+        prompt_max_length: int = 10000,
+    ):
         """
         prompt genertor
         Args:
@@ -35,21 +37,29 @@ class PromptGenerator:
         self.reset()
 
     def reset(self):
-        self.prompt = ''
+        self.prompt = ""
 
+    # 如果没有task指定，就初始化这个prompt
     def init_plan_prompt(self, user_question):
         """
         in this function, the prompt will be initialized.
         """
-        self.system_prompt = self.plan_template
-        self.user_prompt = self.user_template.replace("{user_question}",user_question)
+        self.system_prompt = self.plan_template  # 告诉模型认知。
+        self.user_prompt = self.user_template.replace(
+            "{user_question}", user_question
+        )  # 加载问题prompt
         self.current_task_prompt = None
         self.task_result_prompt = None
 
-
-    def init_task_prompt(self,user_question, tool_list):
-        self.system_prompt = self.task_template + self.task_instruction_template.replace("{tool_list}",self.get_tool_str(tool_list))
-        self.user_prompt = self.user_template.replace("{user_question}",user_question)
+    # 加载任务prompt
+    def init_task_prompt(self, user_question, tool_list):
+        self.system_prompt = (
+            self.task_template
+            + self.task_instruction_template.replace(
+                "{tool_list}", self.get_tool_str(tool_list)
+            )
+        )
+        self.user_prompt = self.user_template.replace("{user_question}", user_question)
         self.current_task_prompt = self.current_task_template
         self.task_result_prompt = None
 
@@ -66,21 +76,17 @@ class PromptGenerator:
             tool_list (List[str]): list of tools
 
         """
-        tool_str = self.sep.join(
-            [f'{i+1}. {t}' for i, t in enumerate(tool_list)])
+        tool_str = self.sep.join([f"{i+1}. {t}" for i, t in enumerate(tool_list)])
         return tool_str
 
     def get_history_str(self):
-        """generate history string
-
-        """
-        history_str = ''
+        """generate history string"""
+        history_str = ""
         for i in range(len(self.history)):
             history_item = self.history[len(self.history) - i - 1]
-            text = history_item['content']
-            if len(history_str) + len(text) + len(
-                    self.prompt) > self.prompt_max_length:
+            text = history_item["content"]
+            if len(history_str) + len(text) + len(self.prompt) > self.prompt_max_length:
                 break
-            history_str = f'{self.sep}{text.strip()}{history_str}'
+            history_str = f"{self.sep}{text.strip()}{history_str}"
 
         return history_str
