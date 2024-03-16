@@ -8,6 +8,7 @@ import torch
 import os
 import numpy as np
 import argparse
+from tqdm import tqdm
 
 
 def seed_it(seed):
@@ -50,7 +51,7 @@ def main():
         args.question_file_path
     )  # 读取问题json文件，返回的是list，list的item为dict
     print("开始预测...")
-    for i, content in enumerate(contents):
+    for i, content in tqdm(enumerate(contents)):
         answer = bs_agent.run(content["question"])
         if args.whole_output:
             content["full_result"] = answer
