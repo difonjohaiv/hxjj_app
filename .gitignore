@@ -1,0 +1,6 @@
+# 大型数据集
+data/question.json
+data/博金杯比赛数据.db
+
+# LLM大模型本地文件
+data/qwen_model/*
