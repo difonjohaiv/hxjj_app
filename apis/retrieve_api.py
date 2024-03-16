@@ -1,9 +1,10 @@
-from langchain.vectorstores import FAISS
+# from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.embeddings.huggingface import HuggingFaceBgeEmbeddings
 from retrieve.doc_retrieve import DocRetrieve
 
 def embedding_model():
-    model_path = 'models/text2vec-bge-large-chinese'
+    model_path = 'models/text2vec-large-chinese'
     embeddings = HuggingFaceBgeEmbeddings(model_name=model_path,model_kwargs={'device': 'cuda'})
     return embeddings
 
