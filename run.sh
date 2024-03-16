@@ -4,6 +4,6 @@
 echo "program start..."
 cd /app
 python agent_predict.py \
-    --question_file_path '/tcdata/question_v2.json' \
-    --answer_file_path 'submit_result.jsonl' \
+    --question_file_path 'data/question.json' \
+    --answer_file_path 'data/answer.jsonl' \
     --random_seed 47

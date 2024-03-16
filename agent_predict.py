@@ -38,7 +38,7 @@ def main():
         nargs="?",
         help="answer file which model generate",
     )
-    parser.add_argument("--random_seed", type=int, default=1234, nargs="?")
+    parser.add_argument("--random_seed", type=int, default=47, nargs="?")
     parser.add_argument("--whole_output", type=bool, default=False, nargs="?")
 
     args = parser.parse_args()
