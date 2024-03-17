@@ -89,7 +89,7 @@ class BSAgentExecutor:
             llm_result, exec_result = "", {}
             prompt = self.prompt_generator.generate(
                 self.task_no
-            )  # 根据task_no生成对应的prompt模板
+            )  # 根据task_no生成对应的prompt模板,如果task_no为none，则继续generate initial prompt
             llm_result = self.llm.generate(
                 prompt
             )  # 把prompt当作输入，让llm处理，返回结果。执行子类的generate方法。这里是任务分类（generate或者query）
