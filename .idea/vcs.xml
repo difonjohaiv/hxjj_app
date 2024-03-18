@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/models/Tongyi-Finance-14B-Chat-Int4" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/models/text2vec-large-chinese" vcs="Git" />
   </component>
 </project>

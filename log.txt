@@ -53,3 +53,7 @@
 2024-03-16 22:05:50,972 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
 2024-03-16 22:05:50,974 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
 2024-03-16 22:06:11,773 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.è¯·ä½¿ç”¨æœ€æ–°æ¨¡å‹å’Œä»£ç ï¼Œå°¤å…¶å¦‚æœä½ åœ¨9æœˆ25æ—¥å‰å·²ç»å¼€å§‹ä½¿ç”¨Qwen-7Bï¼Œåƒä¸‡æ³¨æ„ä¸è¦ä½¿ç”¨é”™è¯¯ä»£ç å’Œæ¨¡å‹ã€‚
+2024-03-18 13:23:53,375 - datasets - INFO - PyTorch version 2.0.1+cu117 available.
+2024-03-18 13:23:54,529 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
+2024-03-18 13:23:54,531 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
+2024-03-18 13:24:51,872 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.ÇëÊ¹ÓÃ×îĞÂÄ£ĞÍºÍ´úÂë£¬ÓÈÆäÈç¹ûÄãÔÚ9ÔÂ25ÈÕÇ°ÒÑ¾­¿ªÊ¼Ê¹ÓÃQwen-7B£¬Ç§Íò×¢Òâ²»ÒªÊ¹ÓÃ´íÎó´úÂëºÍÄ£ĞÍ¡£
