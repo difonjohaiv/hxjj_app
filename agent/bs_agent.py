@@ -105,15 +105,15 @@ class BSAgentExecutor:
             if action is None:  # 如果识别不了任务，
                 # in chat mode, the final result of last instructions should be updated to prompt history
                 pass
-            elif action in self.available_tool_list:
+            elif action in self.available_tool_list:  # 如果action在工具列表里面
                 if isinstance(action_args, list):
                     action_args = self.parse_action_args(action_args[0])
                 else:
                     action_args = self.parse_action_args(action_args)
                 # action_args = self.parse_action_args(action_args)
-                tool = self.available_tool_list[action]
+                tool = self.available_tool_list[action]  # 初始化工具
                 try:
-                    exec_result = tool(user_input, **action_args)
+                    exec_result = tool(user_input, **action_args)  # 执行tool的类方法
                     if print_info:
                         print(f"|exec_result: {exec_result}")
                     # parse exec result and store result to agent state
