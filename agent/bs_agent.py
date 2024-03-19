@@ -62,7 +62,7 @@ class BSAgentExecutor:
         """
         self.available_tool_list = deepcopy(DEFAULT_TOOL_LIST)
 
-    def run(self, user_input: str, print_info: bool = False) -> List[Dict]:
+    def run(self, user_input: str, print_info: bool = True) -> List[Dict]:
         """use llm and tools to execute task given by user
 
         Args:
@@ -106,7 +106,11 @@ class BSAgentExecutor:
                 # in chat mode, the final result of last instructions should be updated to prompt history
                 pass
             elif action in self.available_tool_list:
-                action_args = self.parse_action_args(action_args)
+                if isinstance(action_args, list):
+                    action_args = self.parse_action_args(action_args[0])
+                else:
+                    action_args = self.parse_action_args(action_args)
+                # action_args = self.parse_action_args(action_args)
                 tool = self.available_tool_list[action]
                 try:
                     exec_result = tool(user_input, **action_args)
