@@ -117,13 +117,13 @@ class BSAgentExecutor:
                     if print_info:
                         print(f"|exec_result: {exec_result}")
                     # parse exec result and store result to agent state
-                    if exec_result.get("error") is not None:
+                    if exec_result.get("error") is not None:  # 执行找到错误
                         final_res.append(exec_result)
                         if self.error_nums < 3:
                             self.error_nums += 1
                             self.prompt_generator.init_plan_prompt(user_input)
                             self.task_no = None
-                            continue
+                            continue  # 错误次数少于3次，就继续循环
                         return final_res
                     final_res.append(exec_result.get("result", ""))
                     self.parse_exec_result(exec_result)
@@ -134,7 +134,7 @@ class BSAgentExecutor:
                         self.error_nums += 1
                         self.prompt_generator.init_plan_prompt(user_input)
                         self.task_no = None
-                        continue
+                        continue  # 错误次数少于3次，就继续循环
                     return final_res
             else:
                 exec_result = f"Unknown action: '{action}'. "
@@ -143,7 +143,7 @@ class BSAgentExecutor:
                     self.error_nums += 1
                     self.prompt_generator.init_plan_prompt(user_input)
                     self.task_no = None
-                    continue
+                    continue  # 错误次数少于3次，就继续循环
                 return final_res
 
             # display result
@@ -159,7 +159,9 @@ class BSAgentExecutor:
                 ]
             else:
                 self.task_no += 1
-                if self.task_no >= len(self.task_list):
+                if self.task_no >= len(
+                    self.task_list
+                ):  # 任务列表执行完，返回最后的结果
                     return final_res
 
             self.prompt_generator.update_task_prompt(self.task_list[self.task_no])
