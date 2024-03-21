@@ -228,7 +228,7 @@ class BSPromptGenerator(PromptGenerator):
                     self.user_prompt,
                     self.current_task_prompt,
                 ]
-        return self.sep.join(prompt_list)
+        return self.sep.join(prompt_list)  # 列表字符串拼接
 
     def update_task_prompt(self, current_task):
         self.current_task_prompt = self.current_task_template.replace(
