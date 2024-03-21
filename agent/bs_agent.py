@@ -87,7 +87,7 @@ class BSAgentExecutor:
             idx += 1
             # generate prompt and call llm
             llm_result, exec_result = "", {}
-            prompt = self.prompt_generator.generate(
+            prompt = self.prompt_generator.generate(  # system认知+user问题
                 self.task_no
             )  # 根据task_no生成对应的prompt模板,如果task_no为none，则继续generate，大问题的prompt
             llm_result = self.llm.generate(
