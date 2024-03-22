@@ -77,3 +77,21 @@
 2024-03-21 13:55:47,084 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
 2024-03-21 13:55:47,086 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
 2024-03-21 13:55:52,350 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.请使用最新模型和代码，尤其如果你在9月25日前已经开始使用Qwen-7B，千万注意不要使用错误代码和模型。
+2024-03-21 18:08:28,922 - datasets - INFO - PyTorch version 2.1.2+cu121 available.
+2024-03-21 18:08:29,060 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
+2024-03-21 18:08:29,061 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
+2024-03-21 18:08:29,149 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.请使用最新模型和代码，尤其如果你在9月25日前已经开始使用Qwen-7B，千万注意不要使用错误代码和模型。
+2024-03-21 18:32:48,146 - root - INFO - sql: SELECT COUNT(*) FROM funds WHERE establish_date='2019'
+2024-03-21 19:46:50,713 - datasets - INFO - PyTorch version 2.1.2+cu121 available.
+2024-03-21 19:46:50,838 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
+2024-03-21 19:46:50,839 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
+2024-03-21 19:46:50,924 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.请使用最新模型和代码，尤其如果你在9月25日前已经开始使用Qwen-7B，千万注意不要使用错误代码和模型。
+2024-03-21 19:47:17,292 - datasets - INFO - PyTorch version 2.1.2+cu121 available.
+2024-03-21 19:47:17,404 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
+2024-03-21 19:47:17,405 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
+2024-03-21 19:47:17,492 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.请使用最新模型和代码，尤其如果你在9月25日前已经开始使用Qwen-7B，千万注意不要使用错误代码和模型。
+2024-03-21 19:50:30,072 - datasets - INFO - PyTorch version 2.1.2+cu121 available.
+2024-03-21 19:50:30,185 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
+2024-03-21 19:50:30,186 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
+2024-03-21 19:50:30,274 - transformers_modules.Tongyi-Finance-14B-Chat-Int4.modeling_qwen - WARNING - Warning: please make sure that you are using the latest codes and checkpoints, especially if you used Qwen-7B before 09.25.2023.请使用最新模型和代码，尤其如果你在9月25日前已经开始使用Qwen-7B，千万注意不要使用错误代码和模型。
+2024-03-21 20:14:50,724 - root - INFO - sql: SELECT COUNT(*) FROM funds WHERE establish_date='2019'
